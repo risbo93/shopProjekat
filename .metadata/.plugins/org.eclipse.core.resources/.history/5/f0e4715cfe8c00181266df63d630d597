@@ -1,0 +1,29 @@
+package manager;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+import model.Osoba;
+import model.Stavka;
+
+public class KupovinaManager {
+	public static boolean izvrsiKupovinu(int idOsoba) {
+		EntityManager em = JPAUtil.getEntityManager();
+		em.getTransaction().begin();
+		try {
+			Osoba osoba = getOsobaById(idOsoba);
+			List<Stavka> listaStavki = osoba.getStavkas();
+			osoba.setStavkas(null);
+			em.merge(osoba);
+			
+			
+			
+			em.getTransaction().commit();
+			em.close();
+			return true;
+		}catch(Exception e) {
+			return false;
+		}
+	}
+}

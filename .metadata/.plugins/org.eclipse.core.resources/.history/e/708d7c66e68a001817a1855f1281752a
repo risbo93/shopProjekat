@@ -1,0 +1,59 @@
+package manager;
+
+import javax.persistence.EntityManager;
+
+import org.jasypt.util.password.StrongPasswordEncryptor;
+
+import model.Korisnik;
+import model.Osoba;
+
+public class OsobaManager {
+	
+	public static boolean newOsoba(String ime, String prezime, String username, String password, String drzava, String grad, String ulica, String godineStr) {
+		EntityManager em = JPAUtil.getEntityManager();
+		try {
+			Integer godine = Integer.parseInt(godineStr);
+			Korisnik korisnik = new Korisnik();
+			StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+			String encryptedPassword = passwordEncryptor.encryptPassword(password);
+			System.out.println("Enkriptovan pass------->"+encryptedPassword);
+			korisnik.setUsername(username);
+			korisnik.setPass(encryptedPassword);
+			em.getTransaction().begin();
+			em.persist(korisnik);
+			em.flush();
+			Osoba osoba = new Osoba();
+			osoba.setAdresa(ulica);
+			osoba.setDrzava(drzava);
+			osoba.setGodine(godine);
+			osoba.setGrad(grad);
+			osoba.setIme(ime);
+			osoba.setPrezime(prezime);
+			osoba.setKorisnik(korisnik);
+			osoba.setUloga("KUPAC");
+			em.persist(osoba);
+			em.getTransaction().commit();
+			return true;
+		}catch(Exception e) {
+			return false;
+		}
+	}
+	
+	public static Osoba Login(String username, String password) {
+		EntityManager em = JPAUtil.getEntityManager();
+		try {
+			Korisnik korisnik = (Korisnik) em.createQuery("SELECT k FROM Korisnik k WHERE k.username=:username").setParameter("username", username).getSingleResult();
+			Osoba osoba = (Osoba) em.createQuery("SELECT o FROM Osoba WHERE o.korisnik=:korisnik").setParameter("korisnik", korisnik).getSingleResult();
+			return osoba;
+		}catch(Exception e) {
+			return null;
+		}
+	}
+	
+	public static void main(String [] args) {
+		Osoba osoba = Login("boris","boris12");
+		System.out.println(osoba.getIme()+" "+osoba.getPrezime());
+	}
+	
+	
+}

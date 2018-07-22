@@ -1,0 +1,112 @@
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title></title>
+    <style type="text/css">
+        
+        .modalBackground
+        {
+            background-color: gray;
+            filter: alpha(opacity=70);
+            opacity: 0.7;
+        }
+        .modalPopup
+        {
+            background-color: #ffffdd;
+            border: solid 3px gray;
+            padding: 3px;
+            width: 250px;
+        }
+        .sampleStyleA
+        {
+            background-color: #fff;
+        }
+        .sampleStyleB
+        {
+            background-color: #fff;
+            font-family: monospace;
+            font-size: 10pt;
+            font-weight: bold;
+        }
+        .sampleStyleC
+        {
+            background-color: #dfd;
+            font-family: sans-serif;
+            font-size: 10pt;
+            font-style: italic;
+        }
+        .sampleStyleD
+        {
+            background-color: blue;
+            font-family: Arial;
+            font-size: 10pt;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <cc1:ToolkitScriptManager ID="ScriptManager1" runat="server">
+    </cc1:ToolkitScriptManager>
+    <script type="text/javascript">
+        var styleToSelect;
+ 
+        function onOk() {
+ 
+            $get('Paragraph1').className = styleToSelect;
+ 
+        }
+    </script>
+    <div class="demoarea">
+        <asp:LinkButton ID="LinkButton1" runat="server">click here to open 1st modal popup</asp:LinkButton>
+        <asp:Panel ID="Panel1" runat="server" Style="display: none" CssClass="modalPopup"
+            Width="400px">
+            <div>
+                <p id="Paragraph1">
+                    my color will change depend on your choose
+                </p>
+                <asp:LinkButton ID="LinkButton2" runat="server">click here to choose your favorite color in 2nd modal popup</asp:LinkButton>
+                <p style="text-align: center;">
+                    <asp:Button ID="OkButton" runat="server" Text="close" />
+                </p>
+            </div>
+        </asp:Panel>
+        <cc1:ModalPopupExtender ID="ModalPopupExtender1" runat="server" TargetControlID="LinkButton1"
+            PopupControlID="Panel1" BackgroundCssClass="modalBackground" OkControlID="OkButton"
+            DropShadow="true">
+        </cc1:ModalPopupExtender>
+        <asp:Panel ID="Panel2" runat="server" Style="display: none" CssClass="modalPopup"
+            Width="216px">
+            <div>
+                <p>
+                    <input id="radioA" type="radio" name="Radio" checked="checked" onclick="styleToSelect='sampleStyleA';" />
+                    <label for="RadioA" class="sampleStyleA" style="padding: 3px;">
+                        style 1</label>
+                </p>
+                <p>
+                    <input id="radioB" type="radio" name="Radio" onclick="styleToSelect='sampleStyleB';" />
+                    <label for="RadioB" class="sampleStyleB" style="padding: 3px;">
+                        style 2</label>
+                </p>
+                <p>
+                    <input id="radioC" type="radio" name="Radio" onclick="styleToSelect='sampleStyleC';" />
+                    <label for="RadioC" class="sampleStyleC" style="padding: 3px;">
+                        style 3</label>
+                </p>
+                <p>
+                    <input id="radioD" type="radio" name="Radio" onclick="styleToSelect='sampleStyleD';" />
+                    <label for="RadioD" class="sampleStyleD" style="padding: 3px;">
+                        style 4</label>
+                </p>
+                <asp:Button ID="OkButton2" runat="server" Text="OK" />
+            </div>
+        </asp:Panel>
+        <cc1:ModalPopupExtender ID="ModalPopupExtender2" runat="server" TargetControlID="LinkButton2"
+            PopupControlID="Panel2" BackgroundCssClass="modalBackground" OkControlID="OkButton2"
+            OnOkScript="onOk()" DropShadow="true">
+        </cc1:ModalPopupExtender>
+    </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,11 @@
+package manager;
+
+public class KorisnikManager {
+	public static boolean newKorisnik(String username, String password, String passwordConfirm) {
+		try {
+			return true;
+		}catch(Exception e) {
+			return false;
+		}
+	}
+}

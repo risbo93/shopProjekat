@@ -1,0 +1,10 @@
+package manager;
+
+import javax.persistence.EntityManager;
+
+public class StvariManager {
+	public static List<Stvari> listaStvari(){
+		EntityManager em = JPAUtil.getEntityManager();
+		return em.createQuery("SELECT s FROM Stvari s").getResultList();
+	}
+}

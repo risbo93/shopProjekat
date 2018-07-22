@@ -1,0 +1,10 @@
+package manager;
+
+import model.Osoba;
+
+public class OsobaManager {
+	
+	public static Osoba newOsoba(String ime, String prezime, String username, String password, String drzava, String grad, String ulica, String godine) {
+		return new Osoba();
+	}
+}

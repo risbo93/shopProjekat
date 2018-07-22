@@ -1,0 +1,25 @@
+package manager;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+import model.Stvari;
+
+public class StvariManager {
+	public static List<Stvari> listaStvari(){
+		EntityManager em = JPAUtil.getEntityManager();
+		return em.createQuery("SELECT s FROM Stvari s").getResultList();
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		List<Stvari> listaStvari=listaStvari();
+		for (Stvari stvari : listaStvari) {
+			System.out.println(stvari.getNaziv());
+		}
+	}
+}
+
+

@@ -1,0 +1,53 @@
+package manager;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+import model.Osoba;
+import model.Stavka;
+import model.Stvari;
+
+public class StavkaManager {
+	
+	public static boolean dodajUKorpu(Osoba osoba, String idStvariStr) {
+		EntityManager em = JPAUtil.getEntityManager();
+		em.getTransaction().begin();
+		try {
+			List<Stavka> listaStavki = osoba.getStavkas();
+			Integer idStvari = Integer.parseInt(idStvariStr);
+			if(listaStavki!=null) {
+				System.out.println("nije praznaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+				for (Stavka stavka : listaStavki) {
+					if(stavka.getStvari().getIdStvari()==idStvari) {
+						System.out.println(stavka.getStvari().getNaziv());
+						stavka.setKolicina(stavka.getKolicina()+1);
+						em.merge(stavka);
+						em.getTransaction().commit();
+						em.close();
+						return true;
+					}
+				}
+			}else{
+				listaStavki = new ArrayList<>();
+			}
+			Stavka stavka = new Stavka();
+			Stvari stvar = StvariManager.getStvarById(idStvari);
+			stavka.setKolicina(1);
+			stavka.setStvari(stvar);
+			em.persist(stavka);
+			em.flush();
+			listaStavki.add(stavka);
+			osoba.setStavkas(listaStavki);
+			em.merge(osoba);
+			em.getTransaction().commit();
+			em.close();
+			return true;
+		}catch(Exception e) {
+			em.close();
+			return false;
+		}
+	}
+	
+}

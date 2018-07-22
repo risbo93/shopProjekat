@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="javax.persistence.EntityManagerFactory"/>
+<fullyQualifiedTypeName name="javax.persistence.Persistence"/>
+<fullyQualifiedTypeName name="manager.KorisnikManager"/>
+<fullyQualifiedTypeName name="model.Korisnik"/>
+<fullyQualifiedTypeName name="org.jasypt.util.password.StrongPasswordEncryptor"/>
+<fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+<fullyQualifiedTypeName name="model.Osoba"/>
+<fullyQualifiedTypeName name="model.Stvari"/>
+<fullyQualifiedTypeName name="javax.persistence.EntityManager"/>
+<fullyQualifiedTypeName name="model.Dostava"/>
+<fullyQualifiedTypeName name="manager.StavkaManager"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="manager.StvariManager"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="model.Stavka"/>
+<fullyQualifiedTypeName name="manager.KupovinaManager"/>
+<fullyQualifiedTypeName name="model.Kupovina"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="manager.DostavaManager"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="manager.OsobaManager"/>
+</qualifiedTypeNameHistroy>

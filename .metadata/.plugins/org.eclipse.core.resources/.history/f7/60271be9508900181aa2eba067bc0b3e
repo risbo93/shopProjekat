@@ -1,0 +1,23 @@
+package manager;
+
+import javax.persistence.EntityManager;
+
+public class KorisnikManager {
+	
+	public static boolean newKorisnik(String username, String password, String passwordConfirm) {
+		if(password!=passwordConfirm) {
+			return false;
+		}
+		EntityManager em=JPAUtil.getEntityManager();
+		try {
+			return true;
+		}catch(Exception e) {
+			return false;
+		}
+	}
+	
+	
+	public static void main(String[] args) {
+		
+	}
+}
