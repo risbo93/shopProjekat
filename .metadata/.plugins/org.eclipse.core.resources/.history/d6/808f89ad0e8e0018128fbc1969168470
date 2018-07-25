@@ -1,0 +1,13 @@
+package manager;
+
+public class OcenaManager {
+	
+	public static boolean ostaviKomentar(String brojZvezdica,String komentar, String idStvari, String idOsobe){
+		try {
+			
+			return true;
+		}catch(Exception e) {
+			return false;
+		}
+	}
+}

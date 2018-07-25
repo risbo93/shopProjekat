@@ -17,5 +17,11 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Boris/Downloads/javamail1_4_5 (1)/javamail-1.4.5/Java mail api/dsn.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Boris/Downloads/javamail1_4_5 (1)/javamail-1.4.5/Java mail api/imap.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Boris/Downloads/javamail1_4_5 (1)/javamail-1.4.5/Java mail api/mail.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Boris/Downloads/javamail1_4_5 (1)/javamail-1.4.5/Java mail api/mailapi.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Boris/Downloads/javamail1_4_5 (1)/javamail-1.4.5/Java mail api/pop3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Boris/Downloads/javamail1_4_5 (1)/javamail-1.4.5/Java mail api/smtp.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

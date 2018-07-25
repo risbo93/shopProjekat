@@ -1,0 +1,33 @@
+package manager;
+
+import javax.persistence.EntityManager;
+
+import model.OcenaStvar;
+import model.Osoba;
+import model.Stvari;
+
+public class OcenaManager {
+	
+	public static boolean ostaviKomentar(String ocenaStr,String komentar, String idStvariStr, String idOsobeStr){
+		EntityManager em = JPAUtil.getEntityManager();
+		em.getTransaction().begin();
+		try {
+			Integer ocena = Integer.parseInt(ocenaStr);
+			Osoba osoba = OsobaManager.getOsobaById(Integer.parseInt(idOsobeStr));
+			Stvari stvar = StvariManager.getStvarById(idStvariStr);
+			OcenaStvar ocenaStvar = new OcenaStvar();
+			ocenaStvar.setKomentar(komentar);
+			ocenaStvar.setOcena(ocena);
+			ocenaStvar.setOsoba(osoba);
+			ocenaStvar.setStvari(stvar);
+			em.persist(ocenaStvar);
+			em.getTransaction().commit();
+			em.close();
+			return true;
+		}catch(Exception e) {
+			e.printStackTrace();
+			em.close();
+			return false;
+		}
+	}
+}

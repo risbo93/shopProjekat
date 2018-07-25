@@ -1,0 +1,19 @@
+package manager;
+
+import model.Osoba;
+import model.Stvari;
+
+public class OcenaManager {
+	
+	public static boolean ostaviKomentar(String ocenaStr,String komentar, String idStvariStr, String idOsobeStr){
+		try {
+			Integer ocena = Integer.parseInt(ocenaStr);
+			Osoba osoba = OsobaManager.getOsobaById(Integer.parseInt(idOsobeStr));
+			Stvari stvar = StvariManager.getStvarById(idStvariStr);
+			
+			return true;
+		}catch(Exception e) {
+			return false;
+		}
+	}
+}

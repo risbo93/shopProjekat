@@ -121,6 +121,10 @@ a.list-group-item.active small {
 						action="/ShopWEB/KupovinaServlet" method="get">
 						<button class="dugme" type="submit">Kupovina</button>
 					</form></li>
+					<li><form accept-charset="UTF-8"
+						action="/ShopWEB/ONamaServlet" method="get">
+						<button class="dugme" type="submit">O nama</button>
+					</form></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">

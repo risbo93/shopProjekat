@@ -1,0 +1,13 @@
+package manager;
+
+public class OcenaManager {
+	
+	public static boolean ostaviKomentar(){
+		try {
+			
+			return true;
+		}catch(Exception e) {
+			return false;
+		}
+	}
+}

@@ -1,0 +1,20 @@
+package manager;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+import model.Kompanija;
+
+public class KompanijaManager {
+	
+	public static List<Kompanija> listaKompanija(){
+		EntityManager em = JPAUtil.getEntityManager();
+		return em.createQuery("SELECT k FROM Kompanija k").getResultList();
+	}
+	
+	public static Kompanija getKompanijaById(int idKompanije) {
+		EntityManager em = JPAUtil.getEntityManager();
+		return (Kompanija) em.createQuery("SELECT k FROM Kompanija k WHERE k.idKompanija=:idKompanije").setParameter("idKompanije", idKompanije).getSingleResult();
+	}
+}

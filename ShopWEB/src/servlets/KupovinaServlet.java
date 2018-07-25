@@ -39,6 +39,8 @@ public class KupovinaServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String poruka = "";
+		poruka=request.getParameter("poruka");
 		List<Dostava> listaDostava = DostavaManager.listaDostava();
 		request.setAttribute("listaDostava", listaDostava);
 		List<Stvari> listaStvari =null;
@@ -76,8 +78,19 @@ public class KupovinaServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String idStvari = request.getParameter("odabir");
 		Osoba ulogovanaOsoba = (Osoba) request.getSession().getAttribute("ulogovanaOsoba");
-		Osoba osoba = OsobaManager.getOsobaById(ulogovanaOsoba.getIdOsoba());
-		StavkaManager.dodajUKorpu(osoba, idStvari);
+		Osoba osoba = null;
+		if(ulogovanaOsoba!=null) {
+		osoba = OsobaManager.getOsobaById(ulogovanaOsoba.getIdOsoba());
+		}
+		String poruka1 = "";
+		if(osoba!=null) {
+			if(StavkaManager.dodajUKorpu(osoba, idStvari)) {
+				poruka1="uspesnoDodato";
+			}
+		}else {
+			poruka1="mustLogin";
+		}
+		request.setAttribute("poruka1", poruka1);
 		doGet(request, response);
 	}
 

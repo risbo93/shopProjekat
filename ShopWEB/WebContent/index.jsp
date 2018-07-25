@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="index.css">
 <link rel="stylesheet" type="text/css" href="index2.css">
+<link rel="stylesheet" type="text/css" href="indexButtons.css">
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
@@ -108,6 +109,10 @@
 						action="/ShopWEB/KupovinaServlet" method="get">
 						<button class="dugme" type="submit">Kupovina</button>
 					</form></li>
+					<li><form accept-charset="UTF-8"
+						action="/ShopWEB/ONamaServlet" method="get">
+						<button class="dugme" type="submit">O nama</button>
+					</form></li>
 				<li class="button-dropdown"><a href="javascript:void(0)"
 					class="dropdown-toggle"> Kategorije <span>▼</span>
 				</a>
@@ -168,8 +173,7 @@
 							</div>
 						</li>
 						<li>
-							<form accept-charset="UTF-8" action="/ShopWEB/RegisterServlet"
-								method="get">
+							<form accept-charset="UTF-8" action="/ShopWEB/RegisterServlet" method="get">
 								<button class="registracijaDugme">Register</button>
 							</form>
 						</li>
@@ -274,5 +278,20 @@
 			}
 		});
 	</script>
+	<div class="well text-center">
+	
+<c:choose>
+    <c:when test="${ulogovanaOsoba.uloga=='SUPERADMIN' }">
+			<form accept-charset="UTF-8" action="/ShopWEB/SuperAdminServlet" method="get">
+			<button type="sumbit" class="btn btn-hot text-uppercase">SA Administracija</button>
+			</form>
+			</c:when>  
+			<c:when test="${ulogovanaOsoba.uloga=='COMPANYADMIN' }">
+			<form accept-charset="UTF-8" action="/ShopWEB/CompanyAdminServlet" method="get">
+            <button type="sumbit" class="btn btn-sunny text-uppercase">CA Administracija</button>
+            </form>
+            </c:when>  
+     </c:choose>
+        </div>
 </body>
 </html>

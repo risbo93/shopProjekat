@@ -1,0 +1,28 @@
+package manager;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+import model.Kompanija;
+
+public class KompanijaManager {
+	
+	public static List<Kompanija> listaKompanija(){
+		EntityManager em = JPAUtil.getEntityManager();
+		return em.createQuery("SELECT k FROM Kompanija k").getResultList();
+	}
+	
+	public static Kompanija getKompanijaById(int idKompanije) {
+		EntityManager em = JPAUtil.getEntityManager();
+		return (Kompanija) em.createQuery("SELECT k FROM Kompanija k WHERE k.idKompanija=:idKompanije").setParameter("idKompanije", idKompanije).getSingleResult();
+	}
+	
+	public static boolean RegistrujKompaniju(String nazivKompanije, String adresaKompanije,String linkDoSlike, String procenatZarade, String ime, String prezime, String username, String drzava, String grad, String ulica, String godine, String password) {
+		try {
+			return true;
+		}catch(Exception e) {
+			return false;
+		}
+	}
+}

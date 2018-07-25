@@ -19,7 +19,6 @@ public class OsobaManager {
 			Korisnik korisnik = new Korisnik();
 			StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
 			String encryptedPassword = passwordEncryptor.encryptPassword(password);
-			System.out.println("Enkriptovan pass------->"+encryptedPassword);
 			korisnik.setUsername(username);
 			korisnik.setPass(encryptedPassword);
 			em.getTransaction().begin();
@@ -36,8 +35,10 @@ public class OsobaManager {
 			osoba.setUloga("KUPAC");
 			em.persist(osoba);
 			em.getTransaction().commit();
+			em.close();
 			return true;
 		}catch(Exception e) {
+			em.close();
 			return false;
 		}
 	}
@@ -47,7 +48,9 @@ public class OsobaManager {
 		EntityManager em = JPAUtil.getEntityManager();
 		try {
 			Korisnik korisnik = (Korisnik) em.createQuery("SELECT k FROM Korisnik k WHERE k.username=:username").setParameter("username", username).getSingleResult();
-			if(!korisnik.getPass().equals(password)) {
+			StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+			String encryptedPassword=korisnik.getPass();
+			if(!(korisnik.getPass().equals(password) || passwordEncryptor.checkPassword(password, encryptedPassword) )) {
 				return null;
 			}
 			Osoba osoba = (Osoba) em.createQuery("SELECT o FROM Osoba o WHERE o.korisnik=:korisnik").setParameter("korisnik", korisnik).getSingleResult();

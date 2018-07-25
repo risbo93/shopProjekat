@@ -73,20 +73,26 @@ public class ObrisiIzKorpeServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String poruka = "";
 		String idStavke = request.getParameter("odabirBrisanja");
 		Osoba osoba = (Osoba) request.getSession().getAttribute("ulogovanaOsoba");
 		if(osoba !=null) {
 			if(idStavke!=null) {
 				if(StavkaManager.ukloniIzKorpe(idStavke, osoba)) {
-					System.out.println("Uspesno uklonjeno iz korpe!");
-				}else {
-					System.out.println("Neuspesno brisanje!");
+					poruka="uspesnoBrisanje";
 				}
 			}else {
 				String idDostava = request.getParameter("odabranaKS");
-				KupovinaManager.izvrsiKupovinu(osoba.getIdOsoba(),idDostava);
+				if(KupovinaManager.izvrsiKupovinu(osoba.getIdOsoba(),idDostava)) {
+					poruka="uspesnaKupovina";
+				}else {
+					poruka="neuspesnaKupovina";
+				}
 			}
+		}else {
+			poruka="neuspesnaKupovina";
 		}
+		request.setAttribute("poruka", poruka);
 		doGet(request, response);
 	}
 

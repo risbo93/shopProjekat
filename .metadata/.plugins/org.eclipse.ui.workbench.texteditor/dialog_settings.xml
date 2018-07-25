@@ -2,27 +2,27 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="dodaj" key="selection"/>
+		<item value="Naziv" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="dodaj"/>
-			<item value="potvrdi"/>
-			<item value="korpaserv"/>
-			<item value="korpaServl"/>
-			<item value="korpaser"/>
-			<item value="korpa"/>
-			<item value="listaStvari"/>
-			<item value="odabrana"/>
-			<item value="dugme"/>
-			<item value="input"/>
-			<item value="refresh"/>
-			<item value="myfunc"/>
-			<item value="refreshChild()"/>
-			<item value="onload"/>
-			<item value="kupovina"/>
+			<item value="naziv"/>
+			<item value="kate"/>
+			<item value="kateg"/>
+			<item value="nazad"/>
+			<item value="kat"/>
+			<item value="kategori"/>
+			<item value="super"/>
+			<item value="title"/>
+			<item value="form"/>
+			<item value="list"/>
+			<item value="button"/>
+			<item value="oceni"/>
+			<item value="kupovinaserv"/>
+			<item value="idstv"/>
+			<item value="id"/>
 		</list>
 		<list key="replacehistory">
 		</list>

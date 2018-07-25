@@ -1,0 +1,24 @@
+package manager;
+
+import javax.persistence.EntityManager;
+
+import model.Osoba;
+import model.Stvari;
+
+public class OcenaManager {
+	
+	public static boolean ostaviKomentar(String ocenaStr,String komentar, String idStvariStr, String idOsobeStr){
+		EntityManager em = JPAUtil.getEntityManager();
+		try {
+			Integer ocena = Integer.parseInt(ocenaStr);
+			Osoba osoba = OsobaManager.getOsobaById(Integer.parseInt(idOsobeStr));
+			Stvari stvar = StvariManager.getStvarById(idStvariStr);
+			
+			return true;
+		}catch(Exception e) {
+			e.printStackTrace();
+			em.close();
+			return false;
+		}
+	}
+}

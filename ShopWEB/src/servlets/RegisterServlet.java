@@ -52,22 +52,23 @@ public class RegisterServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		String passwordConfirm = request.getParameter("passwordConfirm");
 		String slazemSe=request.getParameter("slazemSe");
+		String poruka1="";
 		String poruka="";
 		if(slazemSe == null) {
-			poruka = "Za registraciju potrebno prihvatiti uslove!"; 
-			request.setAttribute("poruka", poruka);
+			poruka1 = "Za registraciju potrebno prihvatiti uslove!"; 
+			request.setAttribute("poruka1", poruka1);
 		}else if(ime=="" || prezime=="" || username=="" || password=="" || drzava=="" || grad=="" || ulica=="" || godine=="") {
-			poruka = "Potrebno popuniti sva polja!";
-			request.setAttribute("poruka", poruka);
+			poruka1 = "Potrebno popuniti sva polja!";
+			request.setAttribute("poruka1", poruka1);
 		}else if(!password.equals(passwordConfirm)){
-			poruka = "Passwordi se ne podudaraju!"; 
-			request.setAttribute("poruka", poruka);
+			poruka1 = "Passwordi se ne podudaraju!"; 
+			request.setAttribute("poruka1", poruka1);
 		}else if(KorisnikManager.korisnikExistance(username)) {
-			poruka = "Vas username vec postoji. Molimo vas odaberite drugi!"; 
-			request.setAttribute("poruka", poruka);
+			poruka1 = "Vas username vec postoji. Molimo vas odaberite drugi!"; 
+			request.setAttribute("poruka1", poruka1);
 		}else {
 			OsobaManager.newOsoba(ime, prezime, username, password, drzava, grad, ulica, godine);
-			poruka = "Uspesna registracija!!!";
+			poruka = "uspesnaRegistracija";
 			request.setAttribute("poruka", poruka);
 		}
 		doGet(request,response);	

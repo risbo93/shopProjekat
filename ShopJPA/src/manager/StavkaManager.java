@@ -5,11 +5,16 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import model.Kupovina;
 import model.Osoba;
 import model.Stavka;
 import model.Stvari;
 
 public class StavkaManager {
+	public static void main(String[] args) {
+		getStavkasByIdKupovina(16);
+	}
+	
 	
 	public static List<Stavka> listaStavkiOsobe(Osoba osoba){
 		EntityManager em = JPAUtil.getEntityManager();
@@ -21,6 +26,13 @@ public class StavkaManager {
 		}
 	}
 	
+	public static List<Stavka> getStavkasByIdKupovina(int idKupovina){
+		EntityManager em = JPAUtil.getEntityManager();
+		Kupovina kupovina = KupovinaManager.getKupovinaById(idKupovina);
+		List<Stavka> listaStavki = kupovina.getStavkas();
+		return listaStavki;
+	}
+	
 	public static boolean dodajUKorpu(Osoba osoba, String idStvariStr) {
 		EntityManager em = JPAUtil.getEntityManager();
 		em.getTransaction().begin();
@@ -28,11 +40,8 @@ public class StavkaManager {
 			List<Stavka> listaStavki = osoba.getStavkas();
 			Integer idStvari = Integer.parseInt(idStvariStr);
 			if(listaStavki!=null) {
-				System.out.println("RAZLICITO OD NULL");
 				for (Stavka stavka : listaStavki) {
-					System.out.println("------------------>"+stavka.getStvari().getNaziv());
 					if(stavka.getStvari().getIdStvari()==idStvari) {
-						System.out.println("POSTOJI STAVKA VEC");
 						stavka.setKolicina(stavka.getKolicina()+1);
 						em.merge(stavka);
 						em.getTransaction().commit();
@@ -41,7 +50,6 @@ public class StavkaManager {
 					}
 				}
 			}else{
-				System.out.println("NULL JE");
 				listaStavki = new ArrayList<>();
 			}
 			Stavka stavka = new Stavka();

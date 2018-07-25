@@ -4,10 +4,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="index.css">
 <link rel="stylesheet" type="text/css" href="modal.css">
+<link rel="stylesheet" type="text/css" href="indexButtons.css">
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
@@ -87,11 +90,39 @@ a.list-group-item.active small {
 			});
 	
 </script>
+<style type="text/css">
+.zlatno {
+    background-color: #ffcf40;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 4px 4px 9px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    border-radius: 8px;
+}
 
+
+
+.search{
+	margin: 4px 5px 5px 80px;
+}
+.zlatno:hover {
+    background-color: #bf9b30;
+    color: white;
+}
+</style>
 <title>Kupovina</title>
 
 </head>
 <body>
+
 	<nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -120,6 +151,10 @@ a.list-group-item.active small {
 				<li><form accept-charset="UTF-8"
 						action="/ShopWEB/KupovinaServlet" method="get">
 						<button class="dugme" type="submit">Kupovina</button>
+					</form></li>
+					<li><form accept-charset="UTF-8"
+						action="/ShopWEB/ONamaServlet" method="get">
+						<button class="dugme" type="submit">O nama</button>
 					</form></li>
 				<li class="button-dropdown"><a href="javascript:void(0)"
 					class="dropdown-toggle"> Kategorije <span>▼</span>
@@ -300,6 +335,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
     <form action="/ShopWEB/ObrisiIzKorpeServlet" method="post">
     <h4>Odaberite nacin dostave:</h4>
     <p></p>
+    
     <div class="cols-sm-10">
 							<div class="input-group">
 								<select name="odabranaKS" class="form-control">
@@ -309,8 +345,6 @@ body {font-family: Arial, Helvetica, sans-serif;}
 								</select> 
 							</div>
 						</div>
-						<p></p>
-						<p></p>
 						<p></p>
 						<h3 style="text-align:right;">Iznos vase kupovine je: ${ukupnaCena } rsd</h3>
 						
@@ -359,8 +393,74 @@ window.onclick = function(event) {
 </script>
 
 
-        
 	</div>
+					<c:choose>
+    <c:when test="${poruka1=='mustLogin'}">
+<div class="container">
+	<div class="row">
+		<div class="alert-group">
+            <div class="alert alert-warning alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <strong>Upozorenje!</strong>       Morate biti ulogovani da bi ste izvrsili kupovinu!
+            </div>
+        </div>
+	</div>
+</div>
+    </c:when>    
+    
+    <c:when test="${poruka1=='uspesnoDodato'}">
+<div class="container">
+	<div class="row">
+		<div class="alert-group">
+            <div class="alert alert-success alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <strong>Dodato!</strong> Uspesno ste dodali u korpu.
+            </div>
+        </div>
+	</div>
+</div>
+    </c:when> 
+    
+        <c:when test="${poruka1=='uspesnoBrisanje'}">
+<div class="container">
+	<div class="row">
+		<div class="alert-group">
+            <div class="alert alert-success alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <strong>Obrisano!</strong> Uspesno ste obrisali iz korpe.
+            </div>
+        </div>
+	</div>
+</div>
+    </c:when>
+    
+           <c:when test="${poruka1=='uspesnaKupovina'}">
+<div class="container">
+	<div class="row">
+		<div class="alert-group">
+            <div class="alert alert-success alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <strong>Cestitamo!</strong> Vasa kupovina je uspesno obavljena.
+            </div>
+        </div>
+	</div>
+</div>
+    </c:when>
+
+    <c:when test="${poruka1=='neuspesnaKupovina'}">
+<div class="container">
+	<div class="row">
+		<div class="alert-group">
+            <div class="alert alert-danger alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <strong>Zao nam je!</strong> Vasa kupovina nije uspesno obavljena. Ulogujte se i pokusajte ponovo!
+            </div>
+        </div>
+	</div>
+</div>
+    </c:when> 
+</c:choose>
+	
 		<div class="row">
 			<div class="well">
 				<div class="list-group">
@@ -396,6 +496,13 @@ window.onclick = function(event) {
 								<h4 class="list-group-item-heading">${stvar.naziv }</h4>
 								<p></p>
 								<p class="list-group-item-text">${stvar.opis }</p>
+								<p></p>
+								<p></p>
+								<p></p>
+							<form  action="/ShopWEB/PregledKomentaraServlet" method="get">
+								<input name="odabir" type="hidden" value="${stvar.idStvari }">
+						<p><button class="zlatno" type="submit">Ocene</button></p>
+							</form>
 							</div>
 							<div class="col-md-3 text-center">
 								<h3>
@@ -406,6 +513,27 @@ window.onclick = function(event) {
 								<button type="submit" class="btn btn-primary btn-lg btn-block">Dodaj
 									u korpu</button>
 									</form>
+  <!-- Modal content -->
+  <div id="myModal2" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 								<h4>
 									${brojOcena } <small> votes </small>
 								</h4>
@@ -475,6 +603,5 @@ window.onclick = function(event) {
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>

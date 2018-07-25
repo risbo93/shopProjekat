@@ -1,9 +1,11 @@
 INDEX VERSION 1.130
-E:\SHOP\shopProjekat\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\23059087.index
-\ShopWEB\src
 E:\ShopProjekat\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\23059087.index
+\ShopWEB\src
+E:\SHOP\shopProjekat\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\23059087.index
 \ShopWEB\src
 E:\ShopProjekat\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1698259266.index
 \ShopWEB\src
 E:\ApotekaProj\ShopProjekat\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\23059087.index
+\ShopWEB\src
+E:\shop projekat\ShopProjekat\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\23059087.index
 \ShopWEB\src
